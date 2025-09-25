@@ -1,0 +1,17 @@
+# Gitpod config para proyecto de certificación Selenium + LambdaTest
+image: gitpod/workspace-java-17
+
+tasks:
+  - name: build
+    init: |
+      mvn -q -e -DskipTests clean install
+    command: |
+      echo "Para ejecutar en LambdaTest:"
+      echo "1) Define variables en Gitpod: LT_USERNAME y LT_ACCESS_KEY"
+      echo "2) Ejecuta: mvn -q -Dtest=*Remote test"
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+    - redhat.vscode-xml
+    - formulahendry.code-runner
