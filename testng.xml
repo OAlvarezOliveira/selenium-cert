@@ -1,34 +1,38 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="LambdaTest Parallel Suite" parallel="tests" thread-count="3">
+<suite name="Cert Suite" parallel="tests" thread-count="3">
 
-  <test name="Chrome_latest_Win11">
+  <test name="Day1-Grid-Chrome">
     <parameter name="browserName" value="Chrome"/>
     <parameter name="browserVersion" value="latest"/>
     <parameter name="platformName" value="Windows 11"/>
+    <groups><run><include name="day1"/></run></groups>
     <classes>
-      <class name="com.ejemplo.grid.WikipediaSearchRemote"/>
-      <class name="com.ejemplo.grid.EcommerceSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
     </classes>
   </test>
 
-  <test name="Firefox_latest_Win11">
+  <test name="Day1-Grid-Firefox">
     <parameter name="browserName" value="Firefox"/>
     <parameter name="browserVersion" value="latest"/>
     <parameter name="platformName" value="Windows 11"/>
+    <groups><run><include name="day1"/></run></groups>
     <classes>
-      <class name="com.ejemplo.grid.WikipediaSearchRemote"/>
-      <class name="com.ejemplo.grid.EcommerceSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
     </classes>
   </test>
 
-  <test name="Edge_latest_Win11">
+  <test name="Day1-Grid-Edge">
     <parameter name="browserName" value="MicrosoftEdge"/>
     <parameter name="browserVersion" value="latest"/>
     <parameter name="platformName" value="Windows 11"/>
+    <groups><run><include name="day1"/></run></groups>
     <classes>
-      <class name="com.ejemplo.grid.WikipediaSearchRemote"/>
-      <class name="com.ejemplo.grid.EcommerceSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
+      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
     </classes>
   </test>
 
 </suite>
+
