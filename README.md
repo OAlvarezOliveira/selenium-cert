@@ -1,12 +1,18 @@
-# Selenium Certification Prep (LambdaTest)
+# Selenium Certification Project (Java + TestNG + LambdaTest Grid)
 
-## Requisitos
-- Java 17+ (en local usamos JDK 25)
-- Maven 3.9+
-- Chrome + ChromeDriver (para pruebas locales)
-- Cuenta en LambdaTest (LT_USERNAME / LT_ACCESS_KEY)
+Este repositorio contiene el código y las pruebas desarrolladas para la certificación **LambdaTest Selenium Java 101**.
 
-## Ejecutar local
+## 📌 Requisitos previos
+
+- **Java 17+** (usamos Java 25 en desarrollo)
+- **Maven 3.8+**
+- **Cuenta en [LambdaTest](https://www.lambdatest.com/)**
+- Git
+
+Configura las credenciales de LambdaTest como variables de entorno:
+
+### En Windows (CMD)
+
 ```bash
-mvn -q -Dtest=\!com.ejemplo.grid.* test
-# o desde IDE los mains de com.ejemplo.local
+setx LT_USERNAME "tu_usuario_lambdatest"
+setx LT_ACCESS_KEY "tu_access_key_lambdatest"
