@@ -2,7 +2,7 @@ Selenium Certification 101 (Java + Selenium + TestNG)
 
 Automatización de escenarios web con Selenium 4, Java 17 y TestNG, ejecutando cross-browser en paralelo sobre Selenium Grid (LambdaTest) con artefactos habilitados (network logs, video, screenshots y console logs).
 
-Este repo está preparado para la Certificación 101 y sirve de base para la 102.
+Repositorio orientado a la certificación Selenium 101, con fundamentos útiles para la certificación Selenium Avanzado de LambdaTest.
 
 🧰 Requisitos
 
