@@ -1,233 +1,140 @@
-Selenium Certification 101 (Java + Selenium + TestNG)
+# 🧪 Selenium Java 101 Certification – LambdaTest
 
-Automatización de escenarios web con Selenium 4, Java 17 y TestNG, ejecutando cross-browser en paralelo sobre Selenium Grid (LambdaTest) con artefactos habilitados (network logs, video, screenshots y console logs).
+![Certification Status](https://img.shields.io/badge/Selenium%20Java%20101-Passed-brightgreen?style=for-the-badge&logo=checkmarx)
 
-Repositorio orientado a la certificación Selenium 101, con fundamentos útiles para la certificación Selenium Avanzado de LambdaTest.
+**Autor:** Óscar Álvarez Oliveira  
+**Repositorio:** https://github.com/OAlvarezOliveira/SeleniumJava101-Cert  
+**Certificación:** Selenium Java 101 – LambdaTest  
+**Fecha de entrega:** 26 October 2025
 
-🧰 Requisitos
+---
 
-Java 17 (JDK 17)
+## 🏆 Achievements
 
-Maven 3.9+
+- Successfully completed the **Selenium Java 101 Certification** from LambdaTest.  
+- Achieved a **76% score**, above the required 70% passing threshold.  
+- Built a complete Selenium automation suite with:
+  - **Java 17**, **Selenium 4**, **TestNG**, **Maven**
+  - Parallel execution: **Chrome (Win10)**, **Edge (macOS)**, **Firefox (Win11)**
+  - Remote execution on **LambdaTest Selenium Grid**
+  - Full test artifacts enabled (video, screenshots, network logs, console logs)
+  - Advanced Cookiebot removal (DOM + shadowRoot + retry loop)
+  - Slider precision using JavaScript events (`input` + `change`)
+- Repository validated and accepted by the **LambdaTest Certifications Team**.
 
-Cuenta en LambdaTest (usuario y access key)
+---
 
-TestNG (se usa vía Maven Surefire)
+## ✅ Resumen general
 
-(Opcional) Eclipse o IntelliJ IDEA
+| Métrica | Resultado |
+|--------|-----------|
+| Total de tests | **9** |
+| Tests aprobados | **9 / 9 (100%)** |
+| Fallos | **0** |
+| Skipped | **0** |
+| Paralelismo | 3 navegadores × 3 escenarios |
+| Grid | LambdaTest Selenium Cloud |
+| Artefactos | Video 🎥 · Screenshots 📸 · Console 🧾 · Network 🌐 |
 
-(Opcional) Gitpod (entrega recomendada por el examen)
+---
 
-🔐 Variables de entorno (LambdaTest)
+## 🧠 Escenarios automatizados
 
-Configura estas variables antes de ejecutar en Grid:
+### 1️⃣ Simple Form Demo
+- Navega a *Selenium Playground* → **Simple Form Demo**  
+- Valida que el mensaje introducido aparece bajo **Your Message**.
 
-LT_USERNAME — tu usuario de LambdaTest
+### 2️⃣ Drag & Drop Sliders
+- Abre **Drag & Drop Sliders**  
+- Ajusta el *Default value 15* hasta **95** mediante JavaScript  
+- Valida que el valor mostrado sea **95**
 
-LT_ACCESS_KEY — tu access key de LambdaTest
+### 3️⃣ Input Form Submit
+- Abre **Input Form Submit**  
+- Verifica la validación HTML5 al enviar vacío  
+- Rellena todos los campos (país: *United States*)  
+- Envía el formulario y valida:  
+  **“Thanks for contacting us, we will get back to you shortly.”**  
+- Implementación anti-Cookiebot: DOM + shadow DOM + reintentos
 
-Windows (PowerShell):
+---
 
-setx LT_USERNAME "tu_usuario"
-setx LT_ACCESS_KEY "tu_access_key"
+## ⚙️ Configuración del entorno
 
+```bash
+# Variables de entorno
+export LT_USERNAME="oalvarezoliveira"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
 
-macOS / Linux (bash/zsh):
-
-export LT_USERNAME="tu_usuario"
-export LT_ACCESS_KEY="tu_access_key"
-
-
-Eclipse (Run Configurations → Environment):
-
-Add… → Name=LT_USERNAME, Value=tu_usuario
-
-Add… → Name=LT_ACCESS_KEY, Value=tu_access_key
-
-🏗️ Estructura del proyecto
-.
-├─ pom.xml
-├─ testng.xml
-├─ .gitpod.yml
-└─ src
-   └─ test
-      └─ java
-         └─ com
-            └─ cert
-               └─ tests
-                  ├─ grid
-                  │  ├─ BaseGridTest.java
-                  │  └─ day1
-                  │     ├─ WikipediaSearchRemote.java
-                  │     └─ EcommerceSearchRemote.java
-                  └─ local
-                     └─ (opcional) ...
-
-⚙️ Configuración clave (Grid + artefactos)
-
-En BaseGridTest.java se definen capacidades W3C y LT:Options:
-
-network=true (Network logs)
-
-video=true (Video recording)
-
-visual=true (Screenshots)
-
-console=true (Console logs)
-
-build, project, name (metadatos)
-
-Marcado de estado del job: lambda-status=passed/failed en @AfterMethod
-
-Nota: Para evitar errores de sintaxis de JS, no enviamos lambda-notes (el guion puede romper el identificador si no se intercepta). El status es suficiente para la revisión.
-
-▶️ Cómo ejecutar
-Opción A — Eclipse (recomendado para desarrollo)
-
-Importa como Existing Maven Project (si no lo has hecho).
-
-Abre testng.xml.
-
-Right Click → Run As → TestNG Suite
-(o Run As → Maven test).
-
-Esto lanzará la suite en paralelo (Chrome, Firefox, Edge) sobre Windows 11 en LambdaTest.
-
-Opción B — Maven CLI
-# En la raíz del proyecto:
+# Ejecución limpia
+mvn clean
 mvn -q test
 
+Ejecutado en ONA (Gitpod) con Java 17 + Maven 3.8 + TestNG.
 
-Reportes: target/surefire-reports/
+🧩 Capacidades técnicas
 
-🧪 Suite TestNG (paralelo 3 navegadores)
+Paralelismo: parallel="tests"
 
-testng.xml ya viene configurado con:
+Timeouts: 20–60 s
 
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Cert Suite" parallel="tests" thread-count="3">
-  <test name="Day1-Grid-Chrome">
-    <parameter name="browserName" value="Chrome"/>
-    <parameter name="browserVersion" value="latest"/>
-    <parameter name="platformName" value="Windows 11"/>
-    <groups><run><include name="day1"/></run></groups>
-    <classes>
-      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
-      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
-    </classes>
-  </test>
+Selectores: id, name, linkText, cssSelector, xpath
 
-  <test name="Day1-Grid-Firefox">
-    <parameter name="browserName" value="Firefox"/>
-    <parameter name="browserVersion" value="latest"/>
-    <parameter name="platformName" value="Windows 11"/>
-    <groups><run><include name="day1"/></run></groups>
-    <classes>
-      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
-      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
-    </classes>
-  </test>
+Actualización precisa de slider: JavaScript value + change event
 
-  <test name="Day1-Grid-Edge">
-    <parameter name="browserName" value="MicrosoftEdge"/>
-    <parameter name="browserVersion" value="latest"/>
-    <parameter name="platformName" value="Windows 11"/>
-    <groups><run><include name="day1"/></run></groups>
-    <classes>
-      <class name="com.cert.tests.grid.day1.WikipediaSearchRemote"/>
-      <class name="com.cert.tests.grid.day1.EcommerceSearchRemote"/>
-    </classes>
-  </test>
-</suite>
+Limpieza de cookies avanzada (Cookiebot DOM + shadowRoot)
 
-🌐 ¿Qué validan los tests?
+Artefactos habilitados: video, screenshots, console logs, network logs
 
-WikipediaSearchRemote: búsqueda en Wikipedia y verificación de resultados.
+Marcado de estado: lambda-status=passed/failed
 
-EcommerceSearchRemote: búsqueda de “iPhone” en Ecommerce Playground, apertura de detalle y verificación de H1.
-
-Paralelo en 3 navegadores y artefactos habilitados en cada sesión.
-
-🧪 Ver evidencias en LambdaTest
-
-Ve a Automation en el panel de LambdaTest.
-
-Abre cada Session del build Cert-101-Java.
-
-Verás:
-
-Video recording
-
-Screenshots
-
-Network logs
-
-Console logs
-
-Status (Passed/Failed)
-
-🖥️ Gitpod (requisito de la certificación)
-
-Este repo incluye .gitpod.yml. Para ejecutar en Gitpod:
-
-Abre el repo en Gitpod.
-
-En Variables de entorno de Gitpod, añade:
-
-LT_USERNAME
-
-LT_ACCESS_KEY
-
-En la terminal de Gitpod:
-
-mvn -q test
+🧾 LambdaTest Session IDs (oficiales)
+Navegador / SO	Session ID
+Chrome (Windows 10)	DA-WIN-2801943-1761480744430829019WVU
+Edge (macOS Ventura)	DA-WIN-2801943-1761480713410716439TES
+Firefox (Windows 11)	DA-WIN-2801943-1761480712138821776VYE
 
 
-Verifica en LambdaTest que los artefactos se generaron.
+🔍 Detalle de ejecución (9 tests)
+#	Test	Navegador / SO	Session ID
+1	SimpleFormTest	Chrome (Win10)	DA-WIN-2801943-1761480744430829019WVU
+2	SimpleFormTest	Edge (macOS)	DA-WIN-2801943-1761480713410716439TES
+3	SimpleFormTest	Firefox (Win11)	DA-WIN-2801943-1761480712138821776VYE
+4	DragDropSliderTest	Chrome (Win10)	DA-MAC-2801943-1761480700705416016MMQ
+5	DragDropSliderTest	Edge (macOS)	DA-WIN-2801943-1761480686493595660YNX
+6	DragDropSliderTest	Firefox (Win11)	DA-MAC-2801943-1761480682142685787XQN
+7	InputFormSubmitTest	Chrome (Win10)	DA-WIN-2801943-1761480670193493606KFF
+8	InputFormSubmitTest	Edge (macOS)	DA-WIN-2801943-1761480670026143265UAU
+9	InputFormSubmitTest	Firefox (Win11)	DA-MAC-2801943-1761480669970444976UBX
 
-🚑 Troubleshooting
+🧠 Notas de compatibilidad
 
-Warnings de JDK/Jansi/Unsafe/SLF4J al iniciar Maven:
-Son benignos para la certificación. No afectan la ejecución de las pruebas.
-Si quieres silenciarlos:
+Internet Explorer 11 excluido por obsolescencia en LambdaTest
 
-Jansi: añade --enable-native-access=ALL-UNNAMED al arranque del JVM (opcional).
+Cookiebot presenta reinyección tardía en navegadores Chromium → solucionado con reintentos
 
-SLF4J: puedes añadir un binder (no necesario para el examen).
+Slider no actualiza el label en Grid → ajustado con JavaScript para estabilidad
 
-IllegalStateException: Define LT_USERNAME/LT_ACCESS_KEY
-Asegúrate de tener las variables de entorno en el sistema o configuradas en el entorno de ejecución (Eclipse/Gitpod/CLI).
+🏅 Certification Awarded
 
-El job no marca Passed/Failed
-Verifica que @AfterMethod ejecute ((JavascriptExecutor) driver).executeScript("lambda-status=" + status);
-y que no haya excepciones en teardown.
+Certification: Selenium Java 101 – LambdaTest
+Candidate: Óscar Álvarez Oliveira
+Score: 76% (Minimum required: 70%)
+Status: ✔ Passed
+Issued on: 26 October 2025
 
-lambda-notes da SyntaxError: invalid assignment left-hand side
-No lo usamos para evitar ese problema. El status es suficiente para la evaluación.
+This repository contains the complete automation assignment officially reviewed and accepted by the LambdaTest Certifications Team.
 
-📦 Entrega (lo que pide el examen)
 
-✅ Repo en GitHub privado con .gitpod.yml.
+Estado final
+BUILD SUCCESS
+Tests run: 9
+Failures: 0
+Errors: 0
+Skipped: 0
+All tests passed successfully on LambdaTest Grid.
 
-✅ Compartido con admin@lambdatestcertifications.com
-.
+Repository shared with:
 
-✅ Ejecución Grid en paralelo (Chrome/Firefox/Edge).
-
-✅ Network logs, video, screenshots y console logs habilitados.
-
-✅ Status de cada job (Passed/Failed).
-
-✅ README (este archivo) explicando cómo ejecutar.
-
-⏱️ Entrega del assignment dentro del plazo (recomiendan 36 h antes del deadline).
-
-🎯 ≥ 70% para certificar.
-
-📜 Licencia
-
-Uso educativo para la certificación. Ajusta según tus necesidades.
-
-🙋‍♂️ Contacto
-
-Cualquier duda, revisa Issues del repo
+LambdaTest-Certifications
+admin@lambdatestcertifications.com
