@@ -3,7 +3,7 @@
 ![Certification Status](https://img.shields.io/badge/Selenium%20Java%20101-Passed-brightgreen?style=for-the-badge&logo=checkmarx)
 
 **Autor:** Óscar Álvarez Oliveira  
-**Repositorio:** https://github.com/OAlvarezOliveira/SeleniumJava101-Cert  
+**Repositorio:** https://github.com/OAlvarezOliveira/selenium-cert
 **Certificación:** Selenium Java 101 – LambdaTest  
 **Fecha de entrega:** 26 October 2025
 
